@@ -83,11 +83,21 @@ context('Dev Fianaças agilizar', () => {
         cy.get('[type=date]').type('2021-05-12');//mapeado por atributos
         cy.get('button').contains('Salvar').click();//tipo do elemento que contem ...
 
-        //Estrategia 1 para o seletor:
-        cy.contains(entrada)                  // busca o elemento pelo texto
-            .parent()                         // a pasrtir do elemento pai
-            .find('img[onclick*=remove]')     //Descobre o elemento
+        //Estrategia 1 para o seletor: voltar par ao elemento pai, e avançar até o td img com o atributo...
+        cy.get('td.description')               //refina e filtra o componente que vai buscar o texto
+            .contains(entrada)               // busca o elemento pelo texto
+            .parent()                        // a pasrtir do elemento pai
+            .find('img[onclick*=remove]')    //Descobre o elemento
             .click();
+
+
+        //Estrategia 2 para o seletor: buscar todos os irmãos
+        cy.get('td.description')         // refina e filtra o componente que vai buscar o texto
+            .contains(saida)               // busca o elemento pelo texto
+            .siblings()                      // a partir do elemento irmão
+            .find('img[onclick*=remove]')    // Descobre o elemento img com atributo especifico
+            .click();
+
 
 
     });
