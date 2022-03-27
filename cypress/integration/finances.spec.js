@@ -2,6 +2,7 @@
 /// <reference types = "Cypress" />
 
 
+
 context('Dev Fianaças agilizar', () => {
 
     //Hooks:
@@ -30,7 +31,7 @@ context('Dev Fianaças agilizar', () => {
         // - Mapear os elementos que vamos interagir: conforme inspeção no seletor
         // - adicionar as interações como o Cypress
         cy.get('#transaction .button').click();//Mepeado pelo Id e pela classe
-        cy.get('#description').type('Mesada');//Mepeado pelo Id 
+        cy.get('#description').type('Salario');//Mepeado pelo Id 
         cy.get('[name=amount]').type(12);//mapeado por atributos
         cy.get('[type=date]').type('2021-05-12');//mapeado por atributos
         cy.get('button').contains('Salvar').click();//tipo do elemento que contem ...
@@ -46,12 +47,12 @@ context('Dev Fianaças agilizar', () => {
     it('Cadastrar SAIDAS', () => {
         // - Entender o fluxo manualmente na tela - Interagir com a tela como usuario
 
-        //ver hooks
+        //ver cobr hooks
 
         // - Mapear os elementos que vamos interagir: conforme inspeção no seletor
         // - adicionar as interações como o Cypress
         cy.get('#transaction .button').click();//Mepeado pelo Id e pela classe
-        cy.get('#description').type('Mesada');//Mepeado pelo Id 
+        cy.get('#description').type('Salario');//Mepeado pelo Id 
         cy.get('[name=amount]').type(-12);//mapeado por atributos
         cy.get('[type=date]').type('2021-05-12');//mapeado por atributos
         cy.get('button').contains('Salvar').click();//tipo do elemento que contem ...
@@ -64,4 +65,37 @@ context('Dev Fianaças agilizar', () => {
     });
 
     //remover entradas e saidas 
+    it.only('Remover entradas e saidas', () => {
+
+        const entrada = 'Mesada1'
+        const saida = 'KinderOvo'
+
+        cy.get('#transaction .button').click();//Mepeado pelo Id e pela classe
+        cy.get('#description').type(entrada);//Mepeado pelo Id 
+        cy.get('[name=amount]').type(100);//mapeado por atributos
+        cy.get('[type=date]').type('2021-05-12');//mapeado por atributos
+        cy.get('button').contains('Salvar').click();//tipo do elemento que contem ...
+
+
+        cy.get('#transaction .button').click();//Mepeado pelo Id e pela classe
+        cy.get('#description').type(saida);//Mepeado pelo Id 
+        cy.get('[name=amount]').type(-35);//mapeado por atributos
+        cy.get('[type=date]').type('2021-05-12');//mapeado por atributos
+        cy.get('button').contains('Salvar').click();//tipo do elemento que contem ...
+
+        //Estrategia 1 para o seletor:
+        cy.contains(entrada)                  // busca o elemento pelo texto
+            .parent()                         // a pasrtir do elemento pai
+            .find('img[onclick*=remove]')     //Descobre o elemento
+            .click();
+
+
+    });
+
+    // - enteder o fluxo manualmente
+    // - mapear os elementos que vamos interagir
+    // - descrever as interações com o cypress
+    // - adicionar as asserções que precisamos
+
+
 });
