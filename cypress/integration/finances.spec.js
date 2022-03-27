@@ -1,8 +1,6 @@
 //Carregar mais dados e funções no inlesence do cypress, tipo um help com 
 /// <reference types = "Cypress" />
 
-
-
 context('Dev Fianaças agilizar', () => {
 
     //Hooks:
@@ -65,7 +63,7 @@ context('Dev Fianaças agilizar', () => {
     });
 
     //remover entradas e saidas 
-    it.only('Remover entradas e saidas', () => {
+    it('Remover entradas e saidas', () => {
 
         const entrada = 'Mesada1'
         const saida = 'KinderOvo'
