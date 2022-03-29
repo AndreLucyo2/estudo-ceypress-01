@@ -112,7 +112,8 @@ context('Dev Fianaças agilizar', () => {
     ////////////////////////////////
     // - capturar as linhas com as transações
     // - Formatar esses valores das linhas com
-    // - capturar o texto do totales
+    // - Capturar o textos dessas colunas com valores
+    // - capturar o texto do total
     // - comparar o comatorio de entradas e despesas com o total calculado.
     it.only('Validar Salvo com diversas transações', () => {
 
@@ -134,9 +135,16 @@ context('Dev Fianaças agilizar', () => {
         cy.get('button').contains('Salvar').click();//tipo do elemento que contem ...
 
         //--------------------------------------------------------------------------------
-        cy.get('#data-table tbody tr')            //Seleciona a tabela
+        cy.get('#data-table tbody tr')            //Seleciona a elemento tabela
             .each(($el, index, $list) => {        //faz o laço nas linhas da tabela
                 cy.log(index)                     //Printa o indice
+
+                cy.get($el).find('td.income, td.expense')    //obtem o elemento
+                    .invoke('text').then(text => {           //obtem a função java script do navegador e guarda em uma variavel
+
+                        cy.log(text)   //printa o conteudo obtido
+
+                    })
             })
 
 
