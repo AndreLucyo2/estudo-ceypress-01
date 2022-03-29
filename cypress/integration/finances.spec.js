@@ -1,7 +1,9 @@
 //Carregar mais dados e funções no inlesence do cypress, tipo um help com 
 /// <reference types = "Cypress" />
 
+
 context('Dev Fianaças agilizar', () => {
+
 
     //Hooks:
     // Trechos de codigo que executam antes e depois do teste
@@ -62,19 +64,25 @@ context('Dev Fianaças agilizar', () => {
 
     });
 
+    ////////////////////////////////
     //remover entradas e saidas 
+    // - enteder o fluxo manualmente
+    // - mapear os elementos que vamos interagir
+    // - descrever as interações com o cypress
+    // - adicionar as asserções que precisamos
     it('Remover entradas e saidas', () => {
 
         const entrada = 'Mesada1'
         const saida = 'KinderOvo'
 
+        //Cria uma transação de entrada
         cy.get('#transaction .button').click();//Mepeado pelo Id e pela classe
         cy.get('#description').type(entrada);//Mepeado pelo Id 
         cy.get('[name=amount]').type(100);//mapeado por atributos
         cy.get('[type=date]').type('2021-05-12');//mapeado por atributos
         cy.get('button').contains('Salvar').click();//tipo do elemento que contem ...
 
-
+        //Cria uma transação de saida
         cy.get('#transaction .button').click();//Mepeado pelo Id e pela classe
         cy.get('#description').type(saida);//Mepeado pelo Id 
         cy.get('[name=amount]').type(-35);//mapeado por atributos
@@ -100,10 +108,43 @@ context('Dev Fianaças agilizar', () => {
 
     });
 
-    // - enteder o fluxo manualmente
-    // - mapear os elementos que vamos interagir
-    // - descrever as interações com o cypress
-    // - adicionar as asserções que precisamos
+
+    ////////////////////////////////
+    // - capturar as linhas com as transações
+    // - Formatar esses valores das linhas com
+    // - capturar o texto do totales
+    // - comparar o comatorio de entradas e despesas com o total calculado.
+    it.only('Validar Salvo com diversas transações', () => {
+
+        const entrada = 'Mesada1'
+        const saida = 'KinderOvo'
+
+        //Cria uma transação de entrada
+        cy.get('#transaction .button').click();//Mepeado pelo Id e pela classe
+        cy.get('#description').type(entrada);//Mepeado pelo Id 
+        cy.get('[name=amount]').type(100);//mapeado por atributos
+        cy.get('[type=date]').type('2021-05-12');//mapeado por atributos
+        cy.get('button').contains('Salvar').click();//tipo do elemento que contem ...
+
+        //Cria uma transação de saida
+        cy.get('#transaction .button').click();//Mepeado pelo Id e pela classe
+        cy.get('#description').type(saida);//Mepeado pelo Id 
+        cy.get('[name=amount]').type(-35);//mapeado por atributos
+        cy.get('[type=date]').type('2021-05-12');//mapeado por atributos
+        cy.get('button').contains('Salvar').click();//tipo do elemento que contem ...
+
+        //--------------------------------------------------------------------------------
+        cy.get('#data-table tbody tr')            //Seleciona a tabela
+            .each(($el, index, $list) => {        //faz o laço nas linhas da tabela
+                cy.log(index)                     //Printa o indice
+            })
+
+
+
+
+
+    });
+
 
 
 });
