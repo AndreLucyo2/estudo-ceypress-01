@@ -1,16 +1,17 @@
 //Carregar mais dados e funções no inlesence do cypress, tipo um help com 
 /// <reference types = "Cypress" />
 
+//Importa as funções do arquivo utils.js
+import { format } from '../support/utils'
 
+//-----------------------------------------------------------------------------
+//Hooks:
+// Trechos de codigo que executam antes e depois do teste
+// before -> antes de todos os teste
+// beforeeach -> antes de cada teste 
+// after -> depois de todos os testes
+// afterEach -> depois de cada teste
 context('Dev Fianaças agilizar', () => {
-
-
-    //Hooks:
-    // Trechos de codigo que executam antes e depois do teste
-    // before -> antes de todos os teste
-    // beforeeach -> antes de cada teste 
-    // after -> depois de todos os testes
-    // afterEach -> depois de cada teste
 
     beforeEach(() => {
 
@@ -21,7 +22,7 @@ context('Dev Fianaças agilizar', () => {
 
     });
 
-
+    //-----------------------------------------------------------------------------
     //CENARIO: Cadastrar entradas
     it('Cadastrar ENTRADAS', () => {
         // - Entender o fluxo manualmente na tela - Interagir com a tela como usuario
@@ -43,6 +44,7 @@ context('Dev Fianaças agilizar', () => {
 
     });
 
+    //-----------------------------------------------------------------------------
     //CENARIO: Cadastrar saidas
     it('Cadastrar SAIDAS', () => {
         // - Entender o fluxo manualmente na tela - Interagir com a tela como usuario
@@ -64,7 +66,7 @@ context('Dev Fianaças agilizar', () => {
 
     });
 
-    ////////////////////////////////
+    //-----------------------------------------------------------------------------
     //remover entradas e saidas 
     // - enteder o fluxo manualmente
     // - mapear os elementos que vamos interagir
@@ -109,7 +111,7 @@ context('Dev Fianaças agilizar', () => {
     });
 
 
-    ////////////////////////////////
+    //-----------------------------------------------------------------------------
     // - capturar as linhas com as transações
     // - Formatar esses valores das linhas com
     // - Capturar o textos dessas colunas com valores
@@ -143,6 +145,8 @@ context('Dev Fianaças agilizar', () => {
                     .invoke('text').then(text => {           //obtem a função java script do navegador e guarda em uma variavel
 
                         cy.log(text)   //printa o conteudo obtido  https://www.youtube.com/watch?v=lNn10W6ijP0&list=PLnUo-Rbc3jjztMO4K8b-px4NE-630VNKY&index=9
+                        cy.log(format(text))
+
 
                     })
             })
