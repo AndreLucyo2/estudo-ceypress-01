@@ -142,7 +142,7 @@ context('Dev Fianaças agilizar', () => {
                 cy.get($el).find('td.income, td.expense')    //obtem o elemento
                     .invoke('text').then(text => {           //obtem a função java script do navegador e guarda em uma variavel
 
-                        cy.log(text)   //printa o conteudo obtido
+                        cy.log(text)   //printa o conteudo obtido  https://www.youtube.com/watch?v=lNn10W6ijP0&list=PLnUo-Rbc3jjztMO4K8b-px4NE-630VNKY&index=9
 
                     })
             })
