@@ -13,9 +13,10 @@ export const randomNumber = () => {
     return Math.floor(Math.random() * 101)
 }
 
-
+//Esta função cria dois objetos na memoria do navegador
 export const prepareLocalStorage = (win) => {
 
+    //win representa a janela do navegador, e acessa o local starage
     win.localStorage.setItem('dev.finances:transactions', JSON.stringify([
         {
             description: "Mesada",
